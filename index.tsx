@@ -1,6 +1,5 @@
 /**
  * © 2024 NetVenture by Justin Baptiste. All Rights Reserved.
- * This software and its curriculum are proprietary and confidential.
  */
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -151,19 +150,15 @@ const STRANDS = [
 const MASTER_CHALLENGES: Challenge[] = [
   { id: 's1c1', strand: 1, title: { en: 'Avatar Workshop', ar: 'ورشة عمل الأفاتار' }, description: { en: 'Create a profile picture that can represent you online.', ar: 'أنشئ صورة ملف شخصي يمكنها تمثيلك عبر الإنترنت.' }, points: 30, repeatable: false, level: 'ks1', theme: 'Identity', iconName: 'UserCheck', enabled: true },
   { id: 's1c2', strand: 1, title: { en: 'Alias Architect', ar: 'مهندس الأسماء المستعارة' }, description: { en: 'Design 3 cool nicknames that don\'t use your real initials.', ar: 'صمم ٣ أسماء مستعارة رائعة لا تستخدم أحرف اسمك الحقيقي.' }, points: 30, repeatable: false, level: 'ks2', theme: 'Identity', iconName: 'Fingerprint', enabled: true },
-  { id: 's1c3', strand: 1, title: { en: 'Bio Audit', ar: 'تدقيق السيرة الذاتية' }, description: { en: 'Remove your private information (school name, age, etc.) from all public bios.', ar: 'قم بإزالة معلوماتك الخاصة (اسم المدرسة، العمر، إلخ) من جميع السير الذاتية العامة.' }, points: 55, repeatable: false, level: 'secondary', theme: 'Identity', iconName: 'FileSearch', enabled: true },
-  { id: 's1c4', strand: 1, title: { en: 'The Filter Conversation', ar: 'محادثة الفلاتر' }, description: { en: 'Discuss how filters change our view of "normal" faces.', ar: 'ناقش كيف تغير الفلاتر نظرتنا للوجوه "العادية".' }, points: 40, repeatable: false, level: 'secondary', theme: 'Identity', iconName: 'Smile', enabled: true },
-  { id: 's2c1', strand: 2, title: { en: 'Circle of Trust', ar: 'دائرة الثقة' }, description: { en: 'Draw a circle of people you can talk to about tech worries.', ar: 'ارسم دائرة من الأشخاص الذين يمكنك التحدث معهم عن مخاوف التقنية.' }, points: 20, repeatable: false, level: 'ks1', theme: 'Safety', iconName: 'Users', enabled: true },
+  { id: 's1c3', strand: 1, title: { en: 'Bio Audit', ar: 'تدقيق السيرة الذاتية' }, description: { en: 'Remove your private information from all public bios.', ar: 'قم بإزالة معلوماتك الخاصة من جميع السير الذاتية العامة.' }, points: 55, repeatable: false, level: 'secondary', theme: 'Identity', iconName: 'FileSearch', enabled: true },
   { id: 's2c2', strand: 2, title: { en: 'Permission Pact', ar: 'ميثاق الاستئذان' }, description: { en: 'Ask a family member before taking or posting their photo.', ar: 'استأذن أحد أفراد عائلتك قبل التقاط أو نشر صورته.' }, points: 40, repeatable: true, level: 'ks1', theme: 'Relationships', iconName: 'HeartHandshake', enabled: true },
-  { id: 's2c3', strand: 2, title: { en: 'The Upstander Move', ar: 'حركة المدافع' }, description: { en: 'Support a peer who is being treated unkindly online.', ar: 'ادعم زميلاً يعامل بطريقة غير لطيفة عبر الإنترنت.' }, points: 45, repeatable: true, level: 'ks2', theme: 'Relationships', iconName: 'ShieldPlus', enabled: true },
-  { id: 's2c4', strand: 2, title: { en: 'Red Flag Checklist', ar: 'قائمة العلامات التحذيرية' }, description: { en: 'Identify 3 signs of "digital grooming" with an adult.', ar: 'حدد ٣ علامات لـ "الاستمالة الرقمية" مع شخص بالغ.' }, points: 70, repeatable: false, level: 'secondary', theme: 'Safety', iconName: 'AlertCircle', enabled: true },
   { id: 's5c1', strand: 5, title: { en: 'Offline Adventure', ar: 'مغامرة بدون إنترنت' }, description: { en: 'Go outside and play for 30 minutes without a phone.', ar: 'اخرج والعب لمدة ٣٠ دقيقة بدون هاتف.' }, points: 50, repeatable: true, level: 'ks1', theme: 'Well-being', iconName: 'Globe', enabled: true },
   { id: 's7c2', strand: 7, title: { en: 'Privacy Shield', ar: 'درع الخصوصية' }, description: { en: 'Set your gaming profile to "Private".', ar: 'اجعل ملفك الشخصي في الألعاب "خاصاً".' }, points: 45, repeatable: false, level: 'ks2', theme: 'Privacy', iconName: 'ShieldCheck', enabled: true },
 ];
 
 const MASTER_GLOSSARY: GlossaryItem[] = [
   { id: 'g1', strand: 7, level: 1, term: { en: 'Phishing', ar: 'التصيد' }, primaryDefinition: { en: 'Digital Trickery: Like a fake fisherman using bait to catch your passwords.', ar: 'خداع رقمي: مثل صياد مزيف يستخدم طعماً لصيد كلمات مرورك.' }, secondaryDefinition: { en: 'A fraudulent practice of sending emails or links to steal sensitive data.', ar: 'ممارسة احتيالية لإرسال رسائل بريد أو روابط لسرقة بيانات حساسة.' } },
-  { id: 'g2', strand: 3, level: 1, term: { en: 'Digital Footprint', ar: 'الأثر الرقمي' }, primaryDefinition: { en: 'Muddy Shoes: Every click and post leaves a trail that never fully washes away.', ar: 'أحذية طينية: كل نقرة ومنشور يترك أثراً لا يزول تماماً.' }, secondaryDefinition: { en: 'The unique set of traceable digital activities and data manifested on the Internet.', ar: 'مجموعة فريدة من الأنشطة والبيانات الرقمية التي يمكن تتبعها على الإنترنت.' } },
+  { id: 'g2', strand: 3, level: 1, term: { en: 'Digital Footprint', ar: 'الأثر الرقمي' }, primaryDefinition: { en: 'Every click and post leaves a trail that never fully washes away.', ar: 'كل نقرة ومنشور يترك أثراً لا يزول تماماً.' }, secondaryDefinition: { en: 'The unique set of traceable digital activities Manifested on the Internet.', ar: 'مجموعة فريدة من الأنشطة والبيانات الرقمية التي يمكن تتبعها على الإنترنت.' } },
 ];
 
 const MASTER_SUPPORT: SupportLink[] = [
@@ -260,7 +255,6 @@ const App: React.FC = () => {
   const [showPledgeRenewal, setShowPledgeRenewal] = useState(false);
 
   useEffect(() => {
-    // Hide native loader once the app actually boots
     const loader = document.getElementById('loading');
     if (loader) {
       loader.style.opacity = '0';
@@ -382,7 +376,6 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-12">
-            {/* Dashboard */}
             {activeTab === 'dashboard' && (
               <div className="space-y-10 animate-fade-in">
                 <div className="bg-white p-8 rounded-[3rem] shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -411,7 +404,6 @@ const App: React.FC = () => {
               </div>
             )}
 
-            {/* Challenges */}
             {activeTab === 'challenges' && (
               <div className="space-y-12 animate-fade-in">
                 <h3 className="text-2xl font-black uppercase tracking-tight px-2">Quest Inventory</h3>
@@ -432,7 +424,7 @@ const App: React.FC = () => {
                                 <p className="text-xs text-slate-500 font-bold">{lt(chall.description)}</p>
                               </div>
                             </div>
-                            <button onClick={() => chall.reflectionPrompt ? setReflectingOn(chall) : logCompletion(chall)} disabled={isDone && !chall.repeatable} className="bg-slate-900 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase shadow-md disabled:bg-slate-100 disabled:text-slate-400 hover:bg-indigo-600 transition-colors">
+                            <button onClick={() => chall.reflectionPrompt ? setReflectingOn(chall) : logCompletion(chall)} disabled={isDone && !chall.repeatable} className="bg-slate-900 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase shadow-md hover:bg-indigo-600 transition-colors">
                               {isDone && !chall.repeatable ? "Done" : `+${chall.points} XP`}
                             </button>
                           </div>
@@ -444,7 +436,6 @@ const App: React.FC = () => {
               </div>
             )}
 
-            {/* Hub */}
             {activeTab === 'hub' && (
               <div className="space-y-10 animate-fade-in">
                 <div className="flex bg-slate-100 p-1.5 rounded-2xl">
@@ -454,8 +445,7 @@ const App: React.FC = () => {
                 {hubView === 'quests' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {config.posters.map(poster => (
-                      <div key={poster.id} className="bg-indigo-600 p-8 rounded-[3rem] text-white shadow-xl relative overflow-hidden group">
-                        <Sparkles className="absolute -top-4 -right-4 w-20 h-20 opacity-10 group-hover:rotate-12 transition-transform" />
+                      <div key={poster.id} className="bg-indigo-600 p-8 rounded-[3rem] text-white shadow-xl relative overflow-hidden">
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60 mb-2 block">{poster.category}</span>
                         <h4 className="text-3xl font-black tracking-tight mb-4 uppercase">{lt(poster.title)}</h4>
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
@@ -480,7 +470,6 @@ const App: React.FC = () => {
               </div>
             )}
 
-            {/* Stickers */}
             {activeTab === 'stickers' && (
               <div className="space-y-12 animate-fade-in">
                 <div className="text-center space-y-2">
@@ -509,14 +498,13 @@ const App: React.FC = () => {
               </div>
             )}
 
-            {/* Help/Support */}
             {activeTab === 'support' && (
               <div className="space-y-10 animate-fade-in">
                 <div className="bg-rose-50 p-8 rounded-[3rem] border border-rose-100 text-center space-y-4 shadow-sm">
                   <ShieldAlert className="w-12 h-12 text-rose-500 mx-auto" />
                   <h3 className="text-2xl font-black text-rose-900 uppercase tracking-tight">Need Immediate Help?</h3>
                   <p className="text-sm font-bold text-rose-700">If you're worried about something online, tell a trusted adult or use the resources below.</p>
-                  <a href={config.concernFormUrl} className="inline-block bg-rose-600 text-white px-10 py-4 rounded-2xl font-black text-sm uppercase shadow-lg shadow-rose-200 hover:bg-rose-700 transition-colors">Submit School Concern</a>
+                  <a href={config.concernFormUrl} className="inline-block bg-rose-600 text-white px-10 py-4 rounded-2xl font-black text-sm uppercase shadow-lg hover:bg-rose-700 transition-colors">Submit School Concern</a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {config.supportLinks.map(link => (
@@ -527,8 +515,8 @@ const App: React.FC = () => {
                       <h4 className="text-xl font-black uppercase text-slate-800 tracking-tight">{lt(link.name)}</h4>
                       <p className="text-xs text-slate-500 font-bold leading-relaxed">{lt(link.description)}</p>
                       <div className="flex gap-2">
-                        {link.phone && <a href={`tel:${link.phone}`} className="flex-1 bg-slate-100 text-center py-3 rounded-xl font-black text-[10px] uppercase hover:bg-slate-200 transition-colors">{link.phone}</a>}
-                        <a href={link.url} target="_blank" className="flex-1 bg-indigo-600 text-white text-center py-3 rounded-xl font-black text-[10px] uppercase hover:bg-indigo-700 transition-colors">Visit Site</a>
+                        {link.phone && <a href={`tel:${link.phone}`} className="flex-1 bg-slate-100 text-center py-3 rounded-xl font-black text-[10px] uppercase">{link.phone}</a>}
+                        <a href={link.url} target="_blank" className="flex-1 bg-indigo-600 text-white text-center py-3 rounded-xl font-black text-[10px] uppercase">Visit Site</a>
                       </div>
                     </div>
                   ))}
@@ -564,7 +552,108 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* All previously defined Modals (AddChild, Reflection, PledgeRenewal, Admin) remain correctly implemented... */}
+      {/* Modals Implementation */}
+      {showAddChild && (
+        <div className="fixed inset-0 z-[200] bg-slate-900/90 backdrop-blur-xl flex items-center justify-center p-6">
+          <div className="bg-white w-full max-w-md rounded-[3rem] p-10 relative shadow-2xl">
+            <button className="absolute top-6 right-6" onClick={() => setShowAddChild(false)}><X className="w-6 h-6" /></button>
+            <h3 className="text-3xl font-black uppercase tracking-tight text-center mb-8">{t('new_explorer')}</h3>
+            <form onSubmit={e => {
+              e.preventDefault();
+              const f = new FormData(e.currentTarget);
+              const year = parseInt(f.get('year') as string);
+              const nc: Child = {
+                id: Date.now().toString(),
+                name: f.get('name') as string,
+                className: f.get('className') as string,
+                year,
+                house: f.get('house') as HouseKey,
+                level: getLevelFromYear(year),
+                pledgeSigned: true,
+                schoolId: 'school_default',
+                pledgeLevel: 0,
+                lastPledgeXP: 0
+              };
+              setChildren(prev => [...prev, nc]);
+              setActiveChildId(nc.id);
+              setShowAddChild(false);
+            }} className="space-y-4">
+              <input name="name" required placeholder="Explorer Name" className="w-full bg-slate-50 px-6 py-4 rounded-2xl font-black outline-none border-2 border-transparent focus:border-indigo-600" />
+              <input name="className" required placeholder="Class Code (e.g. 4B)" className="w-full bg-slate-50 px-6 py-4 rounded-2xl font-black outline-none border-2 border-transparent focus:border-indigo-600" />
+              <input name="year" type="number" required placeholder="School Year" className="w-full bg-slate-50 px-6 py-4 rounded-2xl font-black outline-none border-2 border-transparent focus:border-indigo-600" />
+              <div className="grid grid-cols-4 gap-2">
+                {(Object.keys(HOUSE_ASSETS) as HouseKey[]).map(key => (
+                  <label key={key} className="cursor-pointer">
+                    <input type="radio" name="house" value={key} required className="hidden peer" />
+                    <div className="aspect-square rounded-2xl bg-slate-50 border-4 border-transparent peer-checked:border-indigo-600 flex items-center justify-center">
+                      {React.createElement(HOUSE_ASSETS[key].icon, { className: "w-6 h-6", style: { color: HOUSE_ASSETS[key].defaultColor } })}
+                    </div>
+                  </label>
+                ))}
+              </div>
+              <button type="submit" className="w-full bg-slate-900 text-white py-5 rounded-[2rem] font-black uppercase shadow-xl mt-4">Create Account</button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {reflectingOn && (
+        <div className="fixed inset-0 z-[200] bg-slate-900/90 backdrop-blur-xl flex items-center justify-center p-6">
+          <div className="bg-white w-full max-w-md rounded-[3rem] p-10 relative shadow-2xl space-y-6 text-center">
+            <h3 className="text-2xl font-black uppercase tracking-tight">{lt(reflectingOn.title)}</h3>
+            <p className="text-sm font-bold text-slate-500 italic">"{lt(reflectingOn.reflectionPrompt || { en: 'What did you learn from this?', ar: 'ماذا تعلمت من هذا؟' })}"</p>
+            <textarea value={reflectionText} onChange={e => setReflectionText(e.target.value)} placeholder="Type your reflection here..." className="w-full bg-slate-50 h-32 p-6 rounded-3xl font-bold border-2 border-transparent focus:border-indigo-600 outline-none resize-none" />
+            <div className="flex gap-4">
+              <button onClick={() => setReflectingOn(null)} className="flex-1 bg-slate-100 py-4 rounded-2xl font-black uppercase text-[10px]">Cancel</button>
+              <button onClick={() => logCompletion(reflectingOn, reflectionText)} className="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-black uppercase text-[10px]">Submit</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showPledgeRenewal && (
+        <div className="fixed inset-0 z-[250] bg-indigo-600 flex items-center justify-center p-6">
+          <div className="bg-white w-full max-w-lg rounded-[4rem] p-12 text-center space-y-8 animate-slide-up shadow-2xl border-b-[20px] border-indigo-700">
+            <div className="w-24 h-24 bg-amber-100 text-amber-600 rounded-[2rem] flex items-center justify-center mx-auto">
+              <Milestone className="w-12 h-12" />
+            </div>
+            <h2 className="text-4xl font-black text-slate-800 tracking-tight leading-none uppercase">{t('pledge_title')}</h2>
+            <p className="text-lg font-bold text-indigo-600">{lt(currentRank.title)}</p>
+            <div className="bg-slate-50 p-8 rounded-3xl text-sm font-bold text-slate-600">
+              <p>{t('pledge_agree')}</p>
+            </div>
+            <button onClick={handlePledgeRenew} className="w-full bg-slate-900 text-white py-6 rounded-full font-black text-xl uppercase shadow-2xl hover:bg-indigo-900 transition-colors">Sign Covenant</button>
+          </div>
+        </div>
+      )}
+
+      {showAdmin && (
+        <div className="fixed inset-0 z-[300] bg-slate-900/95 backdrop-blur-2xl flex items-center justify-center p-6">
+          <div className="bg-white w-full max-w-md rounded-[3rem] p-10 relative shadow-2xl text-center">
+            <button className="absolute top-6 right-6" onClick={() => setShowAdmin(false)}><X className="w-6 h-6" /></button>
+            <h3 className="text-3xl font-black uppercase tracking-tight mb-8">Admin Vault</h3>
+            {isAdminLocked ? (
+              <div className="space-y-6">
+                <p className="font-bold text-slate-400 uppercase tracking-widest text-[10px]">Enter PIN to access controls</p>
+                <input type="password" value={pinInput} onChange={e => {
+                  setPinInput(e.target.value);
+                  if (e.target.value === "1234") setIsAdminLocked(false);
+                }} className="w-full bg-slate-50 py-6 rounded-3xl text-center text-3xl font-black tracking-[1em] border-none outline-none" maxLength={4} />
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <button onClick={() => {
+                  if (confirm("Reset all data?")) {
+                    localStorage.clear();
+                    window.location.reload();
+                  }
+                }} className="w-full bg-rose-50 text-rose-600 py-4 rounded-2xl font-black uppercase text-xs">Factory Reset App</button>
+                <button onClick={() => setShowAdmin(false)} className="w-full bg-slate-100 py-4 rounded-2xl font-black uppercase text-xs">Close Vault</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
