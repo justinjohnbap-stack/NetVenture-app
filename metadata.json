@@ -1,0 +1,19 @@
+{
+  "name": "NetVenture: Digital Safety",
+  "short_name": "NetVenture",
+  "description": "The Master Digital Safety Challenge for schools.",
+  "theme_color": "#4f46e5",
+  "background_color": "#f8fafc",
+  "display": "standalone",
+  "start_url": "/",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3649/3649460.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "requestFramePermissions": []
+}
