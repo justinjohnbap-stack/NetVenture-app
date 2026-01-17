@@ -21,7 +21,7 @@
     "react": "https://esm.sh/react@19.0.0",
     "react-dom": "https://esm.sh/react-dom@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react,react-dom",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
@@ -36,9 +36,9 @@
         margin: 0;
         padding: 0;
         background-color: #f8fafc;
+        overflow-x: hidden;
       }
 
-      /* Simple loader to show while Babel transpiles the code */
       #loading {
         position: fixed;
         inset: 0;
@@ -47,37 +47,32 @@
         align-items: center;
         justify-content: center;
         background: #f8fafc;
-        z-index: 1000;
-        transition: opacity 0.5s ease;
+        z-index: 9999;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .loader-pulse {
-        width: 64px;
-        height: 64px;
+        width: 80px;
+        height: 80px;
         background: #4f46e5;
-        border-radius: 20px;
-        animation: pulse 1.5s infinite ease-in-out;
+        border-radius: 24px;
+        animation: pulse 2s infinite ease-in-out;
+        box-shadow: 0 0 40px rgba(79, 70, 229, 0.3);
       }
       @keyframes pulse {
-        0% { transform: scale(0.8); opacity: 0.5; }
+        0% { transform: scale(0.9); opacity: 0.6; }
         50% { transform: scale(1); opacity: 1; }
-        100% { transform: scale(0.8); opacity: 0.5; }
+        100% { transform: scale(0.9); opacity: 0.6; }
       }
     </style>
 </head>
 <body>
     <div id="loading">
       <div class="loader-pulse"></div>
-      <p style="margin-top: 20px; font-weight: 800; color: #4f46e5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Initializing NetVenture...</p>
+      <p style="margin-top: 24px; font-weight: 800; color: #4f46e5; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;">Initializing NetVenture...</p>
     </div>
     <div id="root"></div>
     <script type="text/babel" data-type="module">
-      import "./index.tsx";
-      // Hide loader once the app has mounted
-      window.addEventListener('load', () => {
-        const loader = document.getElementById('loading');
-        if (loader) loader.style.opacity = '0';
-        setTimeout(() => loader?.remove(), 500);
-      });
+        import "./index.tsx";
     </script>
 </body>
 </html>
