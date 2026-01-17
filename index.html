@@ -8,7 +8,13 @@
     <meta name="apple-mobile-web-app-title" content="NetVenture">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3649/3649460.png">
     <title>NetVenture | Master Digital Safety</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Babel for in-browser TSX transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script type="importmap">
 {
   "imports": {
@@ -21,6 +27,7 @@
   }
 }
 </script>
+    
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
       
@@ -33,7 +40,6 @@
 
       * {
         -webkit-tap-highlight-color: transparent;
-        user-select: none;
         box-sizing: border-box;
       }
 
@@ -81,6 +87,11 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
+    <!-- 
+      IMPORTANT: 
+      data-type="module" tells Babel to treat this as an ES module.
+      type="text/babel" tells Babel to compile the React/TypeScript code.
+    -->
+    <script type="text/babel" data-type="module" src="index.tsx"></script>
 </body>
 </html>
