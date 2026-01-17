@@ -14,12 +14,12 @@ import {
   Sparkles, LayoutGrid, Heart, Fingerprint, Sticker, GraduationCap, 
   Crown, MessagesSquare, Trash2, ThumbsUp, FileSearch, BookMarked, 
   MapPin, AlertCircle, BrainCircuit, Settings, ExternalLink, UserPlus,
-  ShieldPlus, Download, Upload, ShieldEllipsis as ShieldLock, ListChecks,
+  ShieldPlus, Download, Upload, ListChecks,
   RotateCcw, Save, Layers, Palette, Image as ImageIcon,
   CheckCircle2, Star, Shield, Award, Sparkle, History, HandHeart, Users, Link, Copy, Check,
   School, Trash, MessageCircle, Quote, Milestone, Scale, HeartHandshake, BookOpenCheck, ListPlus, UploadCloud, Eraser,
   ClipboardCheck, Flame, TrendingUp, PhoneCall, LifeBuoy, DownloadCloud, FileUp, LogOut, ChevronRight, Filter, EyeOff,
-  BellOff, ShieldHalf, Bug, Mail, Beaker, UserCircle, MessageSquareQuote, LayoutList, Upload as UploadIcon,
+  BellOff, ShieldHalf, Bug, Mail, Beaker, UserCircle, MessageSquareQuote, LayoutList,
   ToggleLeft, ToggleRight, Database, Component, Boxes
 } from 'lucide-react';
 
@@ -635,7 +635,7 @@ const App: React.FC = () => {
       {/* Admin Panel */}
       {showAdmin && <div className="fixed inset-0 z-[200] bg-slate-900/95 backdrop-blur-2xl flex items-center justify-center p-6"><div className="bg-white w-full max-w-6xl rounded-[4rem] p-0 relative shadow-2xl max-h-[90vh] overflow-hidden flex flex-col">
             <button className="absolute top-8 right-8 p-3 hover:bg-slate-100 rounded-full z-10" onClick={() => setShowAdmin(false)}><X className="w-8 h-8" /></button>
-            {isAdminLocked ? <div className="flex flex-col items-center justify-center py-40 space-y-10 animate-slide-up text-center w-full px-6"><ShieldLock className="w-20 h-20 text-indigo-600" /><h3 className="text-4xl font-black uppercase tracking-tighter">Vault Encryption Required</h3><input type="password" value={pinInput} onChange={async e => { setPinInput(e.target.value); if (e.target.value.length === 4 && (await hashPin(e.target.value)) === config.adminPinHash) setIsAdminLocked(false); }} className="w-full max-w-[280px] bg-slate-50 px-10 py-6 rounded-[2rem] text-center font-black text-3xl tracking-[1em] outline-none border-4 border-transparent shadow-inner focus:border-indigo-600" autoFocus maxLength={4} /></div> : <div className="flex flex-1 overflow-hidden h-full">
+            {isAdminLocked ? <div className="flex flex-col items-center justify-center py-40 space-y-10 animate-slide-up text-center w-full px-6"><ShieldPlus className="w-20 h-20 text-indigo-600" /><h3 className="text-4xl font-black uppercase tracking-tighter">Vault Encryption Required</h3><input type="password" value={pinInput} onChange={async e => { setPinInput(e.target.value); if (e.target.value.length === 4 && (await hashPin(e.target.value)) === config.adminPinHash) setIsAdminLocked(false); }} className="w-full max-w-[280px] bg-slate-50 px-10 py-6 rounded-[2rem] text-center font-black text-3xl tracking-[1em] outline-none border-4 border-transparent shadow-inner focus:border-indigo-600" autoFocus maxLength={4} /></div> : <div className="flex flex-1 overflow-hidden h-full">
                 <aside className="w-72 bg-slate-50 border-r border-slate-200 p-10 flex flex-col gap-4"><div className="mb-6"><h3 className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Configuration</h3><div className="h-1 w-12 bg-indigo-600 rounded-full"></div></div>
                   {[{ id: 'identity', icon: Palette, label: 'Identity' }, { id: 'assets', icon: LayoutList, label: 'Inventory' }, { id: 'manifest', icon: Database, label: 'Asset Manifest' }, { id: 'maintenance', icon: RefreshCw, label: 'Maintenance' }].map(tab => <button key={tab.id} onClick={() => setAdminSubTab(tab.id as any)} className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${adminSubTab === tab.id ? 'bg-indigo-600 text-white shadow-xl' : 'text-slate-400 hover:bg-white hover:text-slate-600'}`}>{React.createElement(tab.icon, { className: "w-5 h-5" })} {tab.label}</button>)}
                   <button onClick={() => { if(confirm("Full Wipe?")) { SecureStorage.save('nv_children', []); SecureStorage.save('nv_completions', []); SecureStorage.save('nv_school_vault', null); window.location.reload(); } }} className="mt-auto text-[8px] font-black text-rose-400 uppercase tracking-widest hover:text-rose-600">Wipe Local Data</button>

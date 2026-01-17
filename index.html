@@ -31,67 +31,53 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
       
-      :root {
-        --house-potter: #E11D48;
-        --house-baggins: #D97706;
-        --house-poppins: #7C3AED;
-        --house-hood: #059669;
-      }
-
-      * {
-        -webkit-tap-highlight-color: transparent;
-        box-sizing: border-box;
-      }
-
       body {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        overscroll-behavior: none;
-        background-color: #f8fafc;
         margin: 0;
         padding: 0;
+        background-color: #f8fafc;
       }
 
-      body[dir="rtl"] {
-        font-family: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', sans-serif;
+      /* Simple loader to show while Babel transpiles the code */
+      #loading {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        z-index: 1000;
+        transition: opacity 0.5s ease;
       }
-
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-      @keyframes slideUp {
-        from { transform: translateY(20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+      .loader-pulse {
+        width: 64px;
+        height: 64px;
+        background: #4f46e5;
+        border-radius: 20px;
+        animation: pulse 1.5s infinite ease-in-out;
       }
-
-      .animate-slide-up {
-        animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      
-      .clay-card {
-        background: #ffffff;
-        box-shadow: 
-          0 10px 25px -5px rgba(0, 0, 0, 0.05),
-          inset 0 -4px 10px rgba(0, 0, 0, 0.03),
-          inset 0 4px 10px rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-      }
-
-      @supports (padding: env(safe-area-inset-bottom)) {
-        .pb-safe {
-          padding-bottom: env(safe-area-inset-bottom);
-        }
+      @keyframes pulse {
+        0% { transform: scale(0.8); opacity: 0.5; }
+        50% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(0.8); opacity: 0.5; }
       }
     </style>
 </head>
 <body>
+    <div id="loading">
+      <div class="loader-pulse"></div>
+      <p style="margin-top: 20px; font-weight: 800; color: #4f46e5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Initializing NetVenture...</p>
+    </div>
     <div id="root"></div>
-    <!-- 
-      IMPORTANT: 
-      data-type="module" tells Babel to treat this as an ES module.
-      type="text/babel" tells Babel to compile the React/TypeScript code.
-    -->
-    <script type="text/babel" data-type="module" src="index.tsx"></script>
+    <script type="text/babel" data-type="module">
+      import "./index.tsx";
+      // Hide loader once the app has mounted
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loading');
+        if (loader) loader.style.opacity = '0';
+        setTimeout(() => loader?.remove(), 500);
+      });
+    </script>
 </body>
 </html>
